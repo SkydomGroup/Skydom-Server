@@ -1,9 +1,7 @@
-# islet
+# Skydom-Server
 
-梦幻之屿的服务端核心，上游为Paper。
+## This project is a branch of Paper
+https://github.com/PaperMC/Paper
 
-目前的修改内容如下：
-
-<s>1. 下界的WorldScale从8修改为1</s>
-
-自己看server/patches/
+## How to use it?
+Clone this repo, run **./gradlew applyPatches**, then **./gradlew createReobfBundlerJar** from your terminal. You can find the compiled jar in the project root's build/libs directory.
