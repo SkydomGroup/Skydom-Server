@@ -1,0 +1,32 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Molean <cnmolean@gmail.com>
+Date: Sun, 12 Jun 2022 13:10:26 +0800
+Subject: [PATCH] modify nether world scale to 1
+
+
+diff --git a/src/main/java/net/minecraft/data/worldgen/DimensionTypes.java b/src/main/java/net/minecraft/data/worldgen/DimensionTypes.java
+index 0bd66d4c0b802097ef55ddbc1745160af5f7a210..45d00274f5e223d3d498a980575be8b73d3cba0b 100644
+--- a/src/main/java/net/minecraft/data/worldgen/DimensionTypes.java
++++ b/src/main/java/net/minecraft/data/worldgen/DimensionTypes.java
+@@ -10,7 +10,7 @@ import net.minecraft.world.level.dimension.DimensionType;
+ public class DimensionTypes {
+     public static void bootstrap(BootstapContext<DimensionType> dimensionTypeRegisterable) {
+         dimensionTypeRegisterable.register(BuiltinDimensionTypes.OVERWORLD, new DimensionType(OptionalLong.empty(), true, false, false, true, 1.0D, true, false, -64, 384, 384, BlockTags.INFINIBURN_OVERWORLD, BuiltinDimensionTypes.OVERWORLD_EFFECTS, 0.0F, new DimensionType.MonsterSettings(false, true, UniformInt.of(0, 7), 0)));
+-        dimensionTypeRegisterable.register(BuiltinDimensionTypes.NETHER, new DimensionType(OptionalLong.of(18000L), false, true, true, false, 8.0D, false, true, 0, 256, 128, BlockTags.INFINIBURN_NETHER, BuiltinDimensionTypes.NETHER_EFFECTS, 0.1F, new DimensionType.MonsterSettings(true, false, ConstantInt.of(7), 15)));
++        dimensionTypeRegisterable.register(BuiltinDimensionTypes.NETHER, new DimensionType(OptionalLong.of(18000L), false, true, true, false, 1.0D, false, true, 0, 256, 128, BlockTags.INFINIBURN_NETHER, BuiltinDimensionTypes.NETHER_EFFECTS, 0.1F, new DimensionType.MonsterSettings(true, false, ConstantInt.of(7), 15)));
+         dimensionTypeRegisterable.register(BuiltinDimensionTypes.END, new DimensionType(OptionalLong.of(6000L), false, false, false, false, 1.0D, false, false, 0, 256, 256, BlockTags.INFINIBURN_END, BuiltinDimensionTypes.END_EFFECTS, 0.0F, new DimensionType.MonsterSettings(false, true, UniformInt.of(0, 7), 0)));
+         dimensionTypeRegisterable.register(BuiltinDimensionTypes.OVERWORLD_CAVES, new DimensionType(OptionalLong.empty(), true, true, false, true, 1.0D, true, false, -64, 384, 384, BlockTags.INFINIBURN_OVERWORLD, BuiltinDimensionTypes.OVERWORLD_EFFECTS, 0.0F, new DimensionType.MonsterSettings(false, true, UniformInt.of(0, 7), 0)));
+     }
+diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
+index 7f94da8059147760cbdc2476d0e8beda4a105f40..2312e82eb52871e7fd2ef88e3e6f33ea05e86643 100644
+--- a/src/main/java/net/minecraft/world/entity/Entity.java
++++ b/src/main/java/net/minecraft/world/entity/Entity.java
+@@ -3463,7 +3463,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+                 return null;
+             } else {
+                 WorldBorder worldborder = destination.getWorldBorder();
+-                double d0 = DimensionType.getTeleportationScale(this.level.dimensionType(), destination.dimensionType());
++                double d0 = 1.0D;
+                 BlockPos blockposition = worldborder.clampToBounds(this.getX() * d0, this.getY(), this.getZ() * d0);
+                 // CraftBukkit start
+                 // Paper start

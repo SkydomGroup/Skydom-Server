@@ -1,0 +1,23 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Molean <cnmolean@gmail.com>
+Date: Mon, 5 Sep 2022 16:22:06 +0800
+Subject: [PATCH] disable border nature spawn
+
+
+diff --git a/src/main/java/net/minecraft/world/level/NaturalSpawner.java b/src/main/java/net/minecraft/world/level/NaturalSpawner.java
+index 29aca952dba5775f4b2a3f4220f2c7370866c8a7..60b28a22d510fbd9c9595c99b8b6d5ad48af2d26 100644
+--- a/src/main/java/net/minecraft/world/level/NaturalSpawner.java
++++ b/src/main/java/net/minecraft/world/level/NaturalSpawner.java
+@@ -139,6 +139,12 @@ public final class NaturalSpawner {
+         if (NaturalSpawningDisableManager.INSTANCE.isRegionNaturalSpawningDisabled(new RegionPos(chunk.getPos().getRegionX(), chunk.getPos().getRegionZ()))) {
+             return;
+         }
++        String property = System.getProperty("islet.DisableBorderNaturalSpawn", "true");
++        if (property.equals("true")) {
++            if (chunk.getPos().x % 32 == 0 || chunk.getPos().x % 32 == 31 || chunk.getPos().z % 32 == 0 || chunk.getPos().z % 32 == 31) {
++                return;
++            }
++        }
+         world.getProfiler().push("spawner");
+         world.timings.mobSpawn.startTiming(); // Spigot
+         MobCategory[] aenumcreaturetype = NaturalSpawner.SPAWNING_CATEGORIES;

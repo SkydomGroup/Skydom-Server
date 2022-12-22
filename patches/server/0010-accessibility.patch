@@ -1,0 +1,45 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Molean <cnmolean@gmail.com>
+Date: Sat, 22 Oct 2022 21:01:20 +0800
+Subject: [PATCH] accessibility
+
+
+diff --git a/src/main/java/net/minecraft/stats/ServerStatsCounter.java b/src/main/java/net/minecraft/stats/ServerStatsCounter.java
+index 72946e324c575ef39f3939225b96b68f724da460..c7c90f5c24787e6676d837be44e7cfa812a5ffd1 100644
+--- a/src/main/java/net/minecraft/stats/ServerStatsCounter.java
++++ b/src/main/java/net/minecraft/stats/ServerStatsCounter.java
+@@ -202,7 +202,7 @@ public class ServerStatsCounter extends StatsCounter {
+         return nbttagcompound;
+     }
+ 
+-    protected String toJson() {
++    public String toJson() {
+         Map<StatType<?>, JsonObject> map = Maps.newHashMap();
+         ObjectIterator objectiterator = this.stats.object2IntEntrySet().iterator();
+ 
+diff --git a/src/main/java/net/minecraft/world/level/StructureManager.java b/src/main/java/net/minecraft/world/level/StructureManager.java
+index bad7031426ae6c750ae4376beb238186e7d65270..09c85ed428b8eaf51f8b3c6e45cce925f05ab354 100644
+--- a/src/main/java/net/minecraft/world/level/StructureManager.java
++++ b/src/main/java/net/minecraft/world/level/StructureManager.java
+@@ -25,7 +25,7 @@ import net.minecraft.world.level.levelgen.structure.StructurePiece;
+ import net.minecraft.world.level.levelgen.structure.StructureStart;
+ 
+ public class StructureManager {
+-    private final LevelAccessor level;
++    public final LevelAccessor level;
+     private final WorldOptions worldOptions;
+     private final StructureCheck structureCheck;
+ 
+diff --git a/src/main/java/org/bukkit/craftbukkit/map/CraftMapRenderer.java b/src/main/java/org/bukkit/craftbukkit/map/CraftMapRenderer.java
+index 9683d7d103af66fffd68c11abc38fb4fd2f99482..58a1ca8cad3115f05033604876c41c40b86c4a26 100644
+--- a/src/main/java/org/bukkit/craftbukkit/map/CraftMapRenderer.java
++++ b/src/main/java/org/bukkit/craftbukkit/map/CraftMapRenderer.java
+@@ -12,7 +12,7 @@ import org.bukkit.map.MapView;
+ 
+ public class CraftMapRenderer extends MapRenderer {
+ 
+-    private final MapItemSavedData worldMap;
++    public final MapItemSavedData worldMap;
+ 
+     public CraftMapRenderer(CraftMapView mapView, MapItemSavedData worldMap) {
+         super(false);
